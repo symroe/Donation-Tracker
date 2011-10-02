@@ -4,7 +4,7 @@
         <meta charset="utf-8">
     </head>
     <body>
-        <h1>TNF</h1>
+        <!-- <h1>TNF</h1>
         <div id="pledges">
             <h2>Total: £<span class="total"></span></h2>
             <div id="pledge_list"></div>
@@ -14,19 +14,39 @@
                 <button id="add-pledge">Add Pledge</button>
             </div>
         </div>
-        <hr />
-        <section id="projects">
-            <div id="project_list"></div>
-            <button id="add-project">Add Project</button>
+        <hr /> -->
+        <h1>TFN Donation Tracker</h1>
+        <section id="ProjectView">
+            <ul id="project_list"></ul>
+            <button id="add-project">Add Project</button>            
         </section>
+        
         <script type="text/tim" class="single_pledge">
             {{ name }} – {{ amount }} <a href="#" class="delete-pledge">x</a>
             <input type="text" class="pledge-input" name="name" value="{{ name }}" />
             <input type="text" class="pledge-input" name="amount" value="{{ amount }}" />
         </script>
-
+        
         <script type="text/tim" class="single_project">
-            {{ name }}
+            <hr />
+            <h2>{{ name }}</h2>
+            <h3>Total: £<span class="total"></span></h3>
+            
+            <div class="project_pledges"></div>
+        </script>
+
+        <script type="text/tim" class="pledge_form">
+            <div class="pledge_list"></div>
+            <div class="pledge_input">
+                name:<input type="text" name="name" value="Foo" class="pledge_name">
+                name:<input type="text" name="amount" value="100" class="pledge_amount">
+                <button class="add-pledge">Add Pledge</button>
+        </script>
+
+        
+
+        <script type="text/tim" class="single_project_list_item">
+            <li><a href="#">{{ name }}</a></li>
         </script>
         
         
@@ -37,7 +57,7 @@
         <script src="backbone.js" type="text/javascript" charset="utf-8"></script>
         <script src="backbone.localStorage.js" type="text/javascript" charset="utf-8"></script>
         <script src="tim.js" type="text/javascript" charset="utf-8"></script>
-        <script src="tfn.js" type="text/javascript" charset="utf-8"></script>
+        <script src="pledges.js" type="text/javascript" charset="utf-8"></script>
         <script src="projects.js" type="text/javascript" charset="utf-8"></script>
         
         
