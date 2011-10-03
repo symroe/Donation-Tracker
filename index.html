@@ -2,6 +2,9 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
+        <style type="text/css" media="screen">
+            .active { color:red}
+        </style>
     </head>
     <body>
         <!-- <h1>TNF</h1>
@@ -18,7 +21,7 @@
         <h1>TFN Donation Tracker</h1>
         <section id="ProjectView">
             <ul id="project_list"></ul>
-            <button id="add-project">Add Project</button>            
+            <button id="add-project">Add Project</button>
         </section>
         
         <script type="text/tim" class="single_pledge">
@@ -31,7 +34,7 @@
             <hr />
             <h2>{{ name }}</h2>
             <h3>Total: £<span class="total"></span></h3>
-            
+            <div class="graph graph-{{ id }}"></div>
             <div class="project_pledges"></div>
             <div class="pledge_list"></div>
             <div class="pledge_input">
@@ -52,7 +55,7 @@
         
 
         <script type="text/tim" class="single_project_list_item">
-            <li><a href="#">{{ name }}</a></li>
+            <li><a href="#project/{{ id }}" class="project-tab project-tab-{{ id }}">{{ name }}</a></li>
         </script>
         
         

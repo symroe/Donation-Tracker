@@ -73,52 +73,6 @@
        }
   });
 
-  // window.PledgesForProjectView = Backbone.View.extend({
-  //   tag: 'section',
-  //   class: 'PledgeView',
-  //   el: $(".project"),
-  //   initialize: function (project) {
-  //        _.bindAll(this, 'render', 'addOne', 'addAll');
-  //        this.model.pledges.bind('change', this.render);
-  //        this.model.view = this;
-  // 
-  //        // this.model.pledges.bind('add', this.addOne);
-  //        this.model.pledges.bind('remove', this.removeOne);
-  //        // this.model.pledges.bind('reset', this.addAll);
-  //        // this.model.pledges.bind('all', this.updateTotal);
-  //        // this.project = project
-  //        this.model.pledges.fetch()
-  //   },
-  //   events: {
-  //     "click .add-pledge":  "submitForm",
-  //   },
-  //   render: function() {
-  //       $(this.el).children('.project_pledges').html(tim('pledge_form', this.model.toJSON()))
-  //   },
-  //   addOne: function(pledge) {
-  //       console.debug('called')
-  //       view = new PledgeView({model: pledge, project: this.model}).render().el
-  //       $(this.el).find('.pledge_list').append(view)
-  //   },
-  //   addAll: function() {
-  //       this.model.pledges.each(this.addOne)
-  //   },
-  //   removeOne: function(pledge) {
-  //       $(pledge.view.el).remove()
-  //   },
-  //   submitForm: function () {
-  //       x = this.model.pledges.create({
-  //           name: $(this.el).find('.pledge_name').val(),
-  //           amount: $(this.el).find('.pledge_amount').val(),
-  //       });
-  //       $(this.el).children('.pledge_amount').val(Math.floor(100+Math.random()*(1000-100)));      
-  //   },
-  //   updateTotal: function() {
-  //       console.debug(this)
-  //       $(this.el).find('.total').html(this.total())
-  //   },
-  // });
-
 })(jQuery);
 
 

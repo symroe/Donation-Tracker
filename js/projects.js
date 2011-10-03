@@ -57,14 +57,16 @@
 
             // Add to the projects tab
             $('#project_list').append(tim('single_project_list_item', this.model.toJSON()));
-
             $(this.el).html(tim('single_project', this.model.toJSON()));
             $('#ProjectView').append(this.el)
             this.updateTotal()
             return this;
         },
         ActivateTab: function() {
-            console.debug('ActivateTab')
+            $('.project').hide()
+            $('.project-tab').removeClass('active')
+            $('.project-tab-'+this.model.id).addClass('active')
+            $(this.el).show()
         },
         updateTotal: function() {
             $(this.el).find('.total').html(this.model.pledges.total(this.model.id))
@@ -110,9 +112,7 @@
         "project/:project": "showProject",
       },
       showProject: function(project) {
-       // console.debug(Projects)
-       project = Projects.at(project)
-       // console.debug(project)
+       project = Projects.get(project)
        project.view.ActivateTab()
       },
     });
