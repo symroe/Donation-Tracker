@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <div id="holder"></div>
+
+        <script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+        <!-- <script src="js/underscore-min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/backbone.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/backbone.localStorage.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/tim.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/pledges.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/projects.js" type="text/javascript" charset="utf-8"></script> -->
+        
+        <script src="js/raphael-min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/g.raphael.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/g.bar.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        
+        
+        
+        
+        <script type="text/javascript" charset="utf-8">
+                    window.onload = function () {
+                        $('#holder').css({'height' : 700})
+                        var r = Raphael("holder")
+                        r.g.txtattr.font = "12px 'Fontin Sans', Fontin-Sans, sans-serif";
+                        
+                        r.g.text(160, 10, "Single Series Chart");
+                        
+                        var b1data = [[319309], [305303], [334917]];
+                        var b2data = [[168210], [163097], [159183]];
+                        var b3data = [[173217], [164199], [201510]];
+                        var bdata = b1data;
+                        
+                        var c = r.g.barchart(10, 10, 300, 220, [bdata], 0, {
+                                // type: "sharp",
+                                stacked: false
+                                });
+
+                        var c2 = r.g.barchart(10, 10, 300, 220, [b3data], 0, {type: "sharp"});
+                        
+                        
+
+                        function animate() {
+                            $.each(c.bars[0], function(k, v) {
+                                v.animate({ path: c2.bars[0][k].attr("path") }, 200);
+                                v.value[0] = bdata[k][0];
+                              });
+                            //Now remove the new chart
+                            c2.remove();
+
+                        }
+                        $('#holder').click(animate)
+                    };
+                </script>
+        
+    </body>
+</html>
