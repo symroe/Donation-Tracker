@@ -2,60 +2,39 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <style type="text/css" media="screen">
-            .active { color:red}
-            .graph {
-                float: right;
-                width: 40%;
-                position: absolute;
-                top: 0;
-                right: 0;
-                height:500px;
-            }
-            .hidden_graph {
-                display:none;
-/*                position:absolute;*/
-/*                right:1000px;*/
-                border:1px solid red;
-            }
-        </style>
+        <link rel="stylesheet" href="css/main.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        
     </head>
     <body>
-        <div class="hidden_graph"></div>
-        <h1>TFN Donation Tracker</h1>
+
         <section id="ProjectView">
-            <ul id="project_list"></ul>
-            <button id="add-project">Add Project</button>
+            <ul id="project_list"><li><button id="add-project">+</button></li></ul>
         </section>
         
         <script type="text/tim" class="single_pledge">
-            {{ name }} – {{ amount }} <button class="delete-pledge">Delete Pledge</button>
-            <input type="text" class="pledge-input" name="name" value="{{ name }}" />
-            <input type="text" class="pledge-input" name="amount" value="{{ amount }}" />
+            <span class="existing_pledge_name">{{ name }}</span><span class="existing_pledge_amount">{{ amount }}</span> 
+            
+            <button class="delete-pledge">Delete Pledge</button>
+            <!--<input type="text" class="pledge-input" name="name" value="{{ name }}" />
+            <input type="text" class="pledge-input" name="amount" value="{{ amount }}" />-->
         </script>
         
         <script type="text/tim" class="single_project">
-            <hr />
             <h2>{{ name }}</h2>
             <h3>Total: £<span class="total"></span></h3>
-            <div class="graph"></div>
-            <div class="project_pledges"></div>
-            <div class="pledge_list"></div>
+            <div class="graph col"></div>
+            <!--<div class="project_pledges col"></div>-->
+            <div class="pledge_list col"></div>
             <div class="pledge_input">
-                name:<input type="text" name="name" value="Foo" class="pledge_name">
-                name:<input type="text" name="amount" value="100" class="pledge_amount">
-                <button class="add-pledge">Add Pledge</button>
+                <label for="pledge_name">Name</label><input type="text" id="pledge_name" name="name" value="Foo" class="pledge_name pledge_form_input">
+                <label for="pledge_amount">&pound;</label><input type="text" id="pledge_amount" name="amount" value="100" class="pledge_amount pledge_form_input">
+                <!--<button class="add-pledge">Add Pledge</button>-->
             
         </script>
 
         <script type="text/tim" class="single_project_list_item">
             <li><a href="#project/{{ id }}" class="project-tab project-tab-{{ id }}">{{ name }}</a></li>
         </script>
-        
-        
-        
-        
-        
         <script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 
         <script src="js/underscore-min.js" type="text/javascript" charset="utf-8"></script>
@@ -71,7 +50,6 @@
         <script src="js/pledges.js" type="text/javascript" charset="utf-8"></script>
         <script src="js/graphs.js" type="text/javascript" charset="utf-8"></script>
         <script src="js/projects.js" type="text/javascript" charset="utf-8"></script>
-        
-        
+        <div class="hidden_graph"></div>
     </body>
 </html>

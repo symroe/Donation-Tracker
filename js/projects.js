@@ -5,7 +5,7 @@
         target_amount: 500,
         total: 0,
         defaults: {
-            target_amount: 50000,
+            target_amount: 3000,
             total: 0,
         }
     });
@@ -42,6 +42,10 @@
         },
         events: {
             "click .add-pledge":  "submitForm",
+            "keypress .pledge_form_input":  "updateOnEnter",
+        },
+        updateOnEnter: function(e) {
+            if (e.keyCode == 13) this.submitForm();
         },
         submitForm: function () {
             x = this.model.pledges.create({
@@ -71,17 +75,24 @@
         render: function() {
 
             // Add to the projects tab
-            $('#project_list').append(tim('single_project_list_item', this.model.toJSON()));
+            tab = $(tim('single_project_list_item', this.model.toJSON()))
+            $('#project_list').append(tab);
+            
+
+            b = $('#add-project').parent()
+            $('#add-project').parent().remove()
+            $('#project_list').append(b);
+
             $(this.el).html(tim('single_project', this.model.toJSON()));
             $('#ProjectView').append(this.el)
             this.updateTotal()
             this.addGraph()
             return this;
         },
-        ActivateTab: function() {
+        activateTab: function() {
             $('.project').hide()
-            $('.project-tab').removeClass('active')
-            $('.project-tab-'+this.model.id).addClass('active')
+            $('.project-tab').parent().removeClass('active')
+            $('.project-tab-'+this.model.id).parent().addClass('active')
             $(this.el).show()
         },
         updateTotal: function() {
@@ -112,6 +123,8 @@
                 // project_id: project_id,
                 name: name
             });
+            PR.navigate('project/'+m.id)
+            PR.showProject(m.id)
         },
         addOne: function(project) {
             var view = new SingleProjectView({model: project})//.render().el;
@@ -130,7 +143,7 @@
       },
       showProject: function(project) {
        project = Projects.get(project)
-       project.view.ActivateTab()
+       project.view.activateTab()
       },
     });
     var PR = new ProjectRouter;

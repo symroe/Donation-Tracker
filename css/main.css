@@ -1,0 +1,74 @@
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 133%;
+    background-image: -webkit-radial-gradient(center center, #FFFFFF, #F5F5F5);
+    overflow:hidden;
+    margin:0;
+    padding:0;
+}
+.col {
+    float:left;
+    width:50%;
+}
+
+#project_list {
+    background-color:#3E3C31;
+    position:absolute;
+    width:100%;
+    bottom:-1em;
+    height:3em;
+}
+#project_list li {
+    float:left;
+    list-style-type:none;
+    background-color:#6C6B65;
+    padding:0.5em;
+    margin:0 0.5em;
+}
+#project_list li a {
+    color:#fff;
+    text-decoration:none;
+}
+#project_list li.active { background-color:#F2F2F2 }
+#project_list li.active a { color:#575846 }
+
+#add-project { 
+    background-color:#6C6B65;
+    border:none;
+    font-size:1em;
+    padding:0;
+    margin:0;
+    color:#fff;
+}
+
+.pledge_list {position:absolute; top:0;right:0}
+.pledge_list li { list-style-type:none; position:relative; font-size:2em;}
+.pledge_list li .existing_pledge_amount { 
+    position:absolute;
+    right:1em;
+}
+.pledge_list li:nth-child(odd)    { background-color:#F6F6F5; }
+.pledge_list li:nth-child(even)    { background-color:#FBFBFB; }
+.pledge_input {
+    position:absolute;
+    bottom:1em;
+    right:2em;
+}
+.pledge_input label {color:#525046}
+.pledge_input input {
+    background-color:#6C6B65;
+    border:none;
+    font-size:1em;
+    color:#fff;
+}
+
+.graph {
+/*    float: right;*/
+/*    width: 40%;*/
+/*    position: absolute;*/
+    top: 0;
+    right: 0;
+    height:500px;
+}
+
+.hidden_graph { display:none; height:0}
