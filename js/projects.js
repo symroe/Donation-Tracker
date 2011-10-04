@@ -2,8 +2,12 @@
     Project = Backbone.Model.extend({
         project_id: null,
         name: null,
-        target_amount: null,
-        total: 0
+        target_amount: 500,
+        total: 0,
+        defaults: {
+            target_amount: 50000,
+            total: 0,
+        }
     });
     
     ProjectList = Backbone.Collection.extend({
@@ -18,17 +22,21 @@
         tagName: "section",
         className: "project",
         initialize: function(model) {
-            _.bindAll(this, 'render', 'addOne', 'addAll');
+            _.bindAll(this, 'render', 'addOne', 'addAll', 'graph');
 
             this.model.view = this;
             this.model.pledges = new PledgeList(this)
 
             this.model.pledges.bind('change', this.updateTotal, this);
+            this.model.pledges.bind('change', this.updateGraph, this);
             this.model.pledges.bind('destroy', this.updateTotal, this);
             this.model.pledges.bind('reset', this.render);
             this.model.bind('reset', this.updateTotal);
             this.model.pledges.bind('reset', this.addAll);
+            // this.model.pledges.bind('reset', this.addGraph, this);
             this.model.pledges.bind('add', this.addOne);
+            this.model.pledges.bind('add', this.updateGraph, this);
+            this.model.pledges.bind('destroy', this.updateGraph, this);
 
             this.model.pledges.fetch()
         },
@@ -36,7 +44,6 @@
             "click .add-pledge":  "submitForm",
         },
         submitForm: function () {
-            console.debug(this.model.id)
             x = this.model.pledges.create({
                 name: $(this.el).find('.pledge_name').val(),
                 amount: $(this.el).find('.pledge_amount').val(),
@@ -53,6 +60,14 @@
             project_id = this.model.id
             this.model.pledges.forProject(project_id).each(this.addOne)
         },
+        addGraph: function() {
+            view = new SingleGraphView(this)
+            view.render()
+            this.graph = view
+        },
+        updateGraph: function() {
+            this.graph.update(this.graph)
+        },
         render: function() {
 
             // Add to the projects tab
@@ -60,6 +75,7 @@
             $(this.el).html(tim('single_project', this.model.toJSON()));
             $('#ProjectView').append(this.el)
             this.updateTotal()
+            this.addGraph()
             return this;
         },
         ActivateTab: function() {
@@ -69,7 +85,8 @@
             $(this.el).show()
         },
         updateTotal: function() {
-            $(this.el).find('.total').html(this.model.pledges.total(this.model.id))
+            total = $(this.el).find('.total').html(this.model.pledges.total(this.model.id))
+            return parseFloat(total.html())
         }
 
     });

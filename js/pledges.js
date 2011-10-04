@@ -54,6 +54,7 @@
        deleteOne: function(el) {
            this.model.destroy()
            $(this.el).remove()
+           return false;
        },
        edit: function() {
            
@@ -65,7 +66,6 @@
 
            name = $(this.el).children('input[name=name]')[0].value
            amount = $(this.el).children('input[name=amount]')[0].value
-           // console.debug(this)
            this.model.save({
                name: name,
                amount: amount
