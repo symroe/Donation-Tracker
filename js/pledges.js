@@ -37,7 +37,9 @@
       className: "pledge",
       events: {
         "click .delete-pledge": "deleteOne",
-        "keypress .pledge-input"   : "updateOnEnter"
+        "dblclick": "edit",
+        "keypress .pledge-input"   : "updateOnEnter",
+        "keypress input"   : "updateOnEnter"
       },
         initialize: function(model) {
             _.bindAll(this, 'render');
@@ -64,19 +66,22 @@
            return false;
        },
        edit: function() {
-           
+           $(this.el).addClass('editing')
+           $(this.el).find('input[name=name]').focus();
        },
        updateOnEnter: function(e) {
            if (e.keyCode == 13) this.close();
        },
        close: function() {
-
-           name = $(this.el).children('input[name=name]')[0].value
-           amount = $(this.el).children('input[name=amount]')[0].value
+           name = $(this.el).find('input[name=name]')[0].value
+           amount = $(this.el).find('input[name=amount]')[0].value
            this.model.save({
                name: name,
                amount: amount
            })
+           this.render()
+           $(this.el).removeClass('editing')
+           $(this.el).find('.pledge_edit_form').hide();
        }
   });
 

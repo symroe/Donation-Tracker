@@ -14,22 +14,21 @@
         
         <script type="text/tim" class="single_pledge">
             <span class="existing_pledge_name">{{ name }}</span><span class="existing_pledge_amount">£{{ amount_formatted }}</span> 
-            
+            <span class="pledge_edit_form" style="display:none;">
+            <input type="text" class="pledge-input" name="name" value="{{ name }}" />
+            <input type="text" class="pledge-input" name="amount" value="{{ amount }}" />
             <button class="delete-pledge">Delete Pledge</button>
-            <!--<input type="text" class="pledge-input" name="name" value="{{ name }}" />
-            <input type="text" class="pledge-input" name="amount" value="{{ amount }}" />-->
+            </span>
         </script>
         
         <script type="text/tim" class="single_project">
             <h2 class="project_name">{{ name }}</h2>
             <span class="total"></span>
             <div class="graph col"></div>
-            <!--<div class="project_pledges col"></div>-->
             <div class="pledge_list_container col"><div class="pledge_list"></div></div>
             <div class="pledge_input">
                 <label for="pledge_name">Name</label><input type="text" id="pledge_name" name="name" value="" class="pledge_name pledge_form_input">
                 <label for="pledge_amount">&pound;</label><input type="text" id="pledge_amount" name="amount" value="" class="pledge_amount pledge_form_input">
-                <!--<button class="add-pledge">Add Pledge</button>-->
             
         </script>
 

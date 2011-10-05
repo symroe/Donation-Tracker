@@ -1,6 +1,6 @@
 body {
     font-family: 'ProximaNovaLight', sans-serif;
-    font-size: 133%;
+    font-size: 113%;
     background-image: -webkit-radial-gradient(center center, #FFFFFF, #F5F5F5);
     overflow:hidden;
     margin:0;
@@ -50,21 +50,42 @@ h2.project_name {
     color:#fff;
 }
 
+.pledge_list_container {
+    position:absolute!important;
+    top:0;
+    right:0; 
+    bottom:3em; 
+    overflow-x:auto
+}
 .pledge_list li { 
   list-style-type:none;
   position:relative;
   font-size:2em;
-  padding: 10px;
+  padding-bottom: 3px;
+
 }
-.pledge_list_container {position:absolute!important; top:0;right:0; bottom:3em; overflow-x:auto}
+.pledge_list {
+    background:url('../images/pledge-bg.png');
+    height:100%;
+    background-size: 16px;
+}
 .pledge_list li .existing_pledge_amount { 
     float: right;
     right: 1em;
     font-family: 'ProximaNovaExtrabold', sans-serif;
     color:#E72A87;
+    height:1em;
 }
 .pledge_list li:nth-child(odd)    { background-color:#F6F6F5; }
 .pledge_list li:nth-child(even)    { background-color:#FBFBFB; }
+
+.editing span {
+    display:none;
+}
+
+.editing .pledge_edit_form {
+    display:block !important;
+}
 .pledge_input {
     position:absolute;
     z-index:51;
