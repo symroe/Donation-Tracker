@@ -32,7 +32,7 @@
             b2 = graph.bars[0][1]
             // console.debug(p1.getBBox().y)
             
-            r.g.txtattr.font = "30px Helvetica, Arial, sans-serif";
+            r.g.txtattr.font = "30px ProximaNovaExtrabold, sans-serif";
             function getAmountPos(b) {
                 return [b.getBBox().x+90, b.getBBox().y-20]
             }

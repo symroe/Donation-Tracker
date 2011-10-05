@@ -1,11 +1,12 @@
 body {
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: 'ProximaNovaLight', sans-serif;
     font-size: 133%;
     background-image: -webkit-radial-gradient(center center, #FFFFFF, #F5F5F5);
     overflow:hidden;
     margin:0;
     padding:0;
 }
+
 .col {
     float:left;
     width:50%;
@@ -43,10 +44,16 @@ body {
 }
 
 .pledge_list_container {position:absolute!important; top:0;right:0; bottom:3em; overflow:hidden}
-.pledge_list li { list-style-type:none; position:relative; font-size:2em;}
+.pledge_list li { 
+  list-style-type:none;
+  position:relative;
+  font-size:2em;
+  padding: 10px;
+}
 .pledge_list li .existing_pledge_amount { 
-    position:absolute;
-    right:1em;
+    float: right;
+    right: 1em;
+    font-family: 'ProximaNovaExtrabold', sans-serif;
 }
 .pledge_list li:nth-child(odd)    { background-color:#F6F6F5; }
 .pledge_list li:nth-child(even)    { background-color:#FBFBFB; }
@@ -74,3 +81,27 @@ body {
 }
 
 .hidden_graph { display:none; height:0}
+
+@font-face {
+    font-family: 'ProximaNovaExtrabold';
+    src: url('../fonts/proximanova-extrabold-webfont.eot');
+    src: url('../fonts/proximanova-extrabold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/proximanova-extrabold-webfont.woff') format('woff'),
+         url('../fonts/proximanova-extrabold-webfont.ttf') format('truetype'),
+         url('../fonts/proximanova-extrabold-webfont.svg#ProximaNovaExtrabold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'ProximaNovaLight';
+    src: url('../fonts/proxima_nova_light-webfont.eot');
+    src: url('../fonts/proxima_nova_light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/proxima_nova_light-webfont.woff') format('woff'),
+         url('../fonts/proxima_nova_light-webfont.ttf') format('truetype'),
+         url('../fonts/proxima_nova_light-webfont.svg#ProximaNovaLight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
