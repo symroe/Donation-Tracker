@@ -23,8 +23,37 @@
             total = this.project.model.view.updateTotal()
             max = target*2
             var initialData = [[parseFloat(total)],[target], [max]];
-            graph = r.g.barchart(50, 10, 300, 420, [initialData], 0, {stacked:false, type: "round"});
+            graph = r.g.barchart(60, 40, 700, 420, [initialData], 0, {stacked:false, type: "round"});
             graph.bars[0][2].attr([this.graph_properties.attrs])
+            graph.bars[0][1].attr([{fill: '#E72A87', stroke: '#E72A87'}])
+            graph.bars[0][0].attr([{fill: '#A4C958', stroke: '#A4C958'}])
+            
+            b1 = graph.bars[0][0]
+            b2 = graph.bars[0][1]
+            // console.debug(p1.getBBox().y)
+            
+            r.g.txtattr.font = "30px Helvetica, Arial, sans-serif";
+            function getAmountPos(b) {
+                return [b.getBBox().x+90, b.getBBox().y-20]
+            }
+            function getLabelPos(b) {
+                return [b.getBBox().x+90, b.getBBox().y+20]
+            }
+            // #EE6AAB
+            total_label_pos = getLabelPos(b1)
+            target_label_pos = getLabelPos(b2)
+
+            total_amount_pos = getAmountPos(b1)
+            target_amount_pos = getAmountPos(b2)
+            
+            graph.bars[0][0].internal_label = r.g.text(total_label_pos[0], total_label_pos[1], "TOTAL").attr({"fill": "#BFD98A"});
+            graph.bars[0][1].internal_label = r.g.text(target_label_pos[0], target_label_pos[1], "TARGET").attr({"fill": "#EE6AAB"});
+            graph.bars[0][2].internal_label = r.g.text(0,0, "").attr({opacity: 0});
+
+            graph.bars[0][0].amount_label = r.g.text(total_amount_pos[0], total_amount_pos[1], '£'+total).attr({"fill": "#BFD98A"});
+            graph.bars[0][1].amount_label = r.g.text(target_amount_pos[0], target_amount_pos[1], '£'+target).attr({"fill": "#EE6AAB"});
+            graph.bars[0][2].amount_label = r.g.text(0,0, "").attr({opacity: 0});
+            
             return graph
         },
         animate: function(old_graph_view, new_graph) {
@@ -45,6 +74,7 @@
                 Many Bothans died to bring us this information.
             */
             old_graph = old_graph_view.graph
+            // console.debug(old_graph_view.graph)
             $.each(old_graph.bars[0], function(k, v) {
                 v.show()
                 if (!new_graph.bars[0][k].attr("path")) {
@@ -56,6 +86,12 @@
                 
                 try {
                     v.animate({ path:  new_graph.bars[0][k].attr("path")}, 200);
+                    internal_y = new_graph.bars[0][k].internal_label.attr("y")
+                    amount_y = new_graph.bars[0][k].amount_label.attr("y")
+                    updated_amount = new_graph.bars[0][k].amount_label.attr("text")
+                    v.internal_label.animate({y:  internal_y}, 200);
+                    v.amount_label.attr({text: updated_amount});
+                    v.amount_label.animate({y:  amount_y}, 200);
                 } catch(s) {
                     old_graph = old_graph_view.makeGraph(old_graph_view.raphael)
                 }

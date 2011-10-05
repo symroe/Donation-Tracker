@@ -17,6 +17,7 @@ body {
     width:100%;
     bottom:-1em;
     height:3em;
+    z-index:50;
 }
 #project_list li {
     float:left;
@@ -41,7 +42,7 @@ body {
     color:#fff;
 }
 
-.pledge_list {position:absolute; top:0;right:0}
+.pledge_list_container {position:absolute!important; top:0;right:0; bottom:3em; overflow:hidden}
 .pledge_list li { list-style-type:none; position:relative; font-size:2em;}
 .pledge_list li .existing_pledge_amount { 
     position:absolute;
@@ -51,6 +52,7 @@ body {
 .pledge_list li:nth-child(even)    { background-color:#FBFBFB; }
 .pledge_input {
     position:absolute;
+    z-index:51;
     bottom:1em;
     right:2em;
 }

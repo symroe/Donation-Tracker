@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="css/main.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="css/lionbars.css" type="text/css" media="screen" title="no title" charset="utf-8">
         
     </head>
     <body>
@@ -24,7 +25,7 @@
             <h3>Total: £<span class="total"></span></h3>
             <div class="graph col"></div>
             <!--<div class="project_pledges col"></div>-->
-            <div class="pledge_list col"></div>
+            <div class="pledge_list_container col"><div class="pledge_list"></div></div>
             <div class="pledge_input">
                 <label for="pledge_name">Name</label><input type="text" id="pledge_name" name="name" value="Foo" class="pledge_name pledge_form_input">
                 <label for="pledge_amount">&pound;</label><input type="text" id="pledge_amount" name="amount" value="100" class="pledge_amount pledge_form_input">
@@ -36,7 +37,7 @@
             <li><a href="#project/{{ id }}" class="project-tab project-tab-{{ id }}">{{ name }}</a></li>
         </script>
         <script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-
+        <script src="js/jQuery.lionbars.0.2.1.js" type="text/javascript" charset="utf-8"></script>
         <script src="js/underscore-min.js" type="text/javascript" charset="utf-8"></script>
         <script src="js/backbone.js" type="text/javascript" charset="utf-8"></script>
         <script src="js/backbone.localStorage.js" type="text/javascript" charset="utf-8"></script>
@@ -45,11 +46,17 @@
         <script src="js/g.raphael.js" type="text/javascript" charset="utf-8"></script>
         <script src="js/g.bar.js" type="text/javascript" charset="utf-8"></script>
 
+
         <script src="js/tim.js" type="text/javascript" charset="utf-8"></script>
+
 
         <script src="js/pledges.js" type="text/javascript" charset="utf-8"></script>
         <script src="js/graphs.js" type="text/javascript" charset="utf-8"></script>
         <script src="js/projects.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript" charset="utf-8">
+            $('.pledge_list_container').lionbars();
+        </script>
+        
         <div class="hidden_graph"></div>
     </body>
 </html>

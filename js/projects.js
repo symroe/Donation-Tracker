@@ -57,7 +57,13 @@
         },
         addOne: function(pledge) {
             view = new PledgeView({model: pledge, project: this.model}).render().el
-            $(this.el).find('.pledge_list').append(view)
+            new_el = $(this.el).find('.pledge_list').prepend(view)
+
+            $(this.el).find('.pledge_list_container #1').animate({
+                scrollTop: new_el.parent().find('.pledge_list')[0].top
+                }, 2000)
+            
+            $(this.el).find('.pledge_list').prepend(view)
             this.updateTotal()
         },
         addAll: function() {
