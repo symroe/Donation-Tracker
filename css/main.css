@@ -43,13 +43,13 @@ body {
     color:#fff;
 }
 
-.pledge_list_container {position:absolute!important; top:0;right:0; bottom:3em; overflow:hidden}
 .pledge_list li { 
   list-style-type:none;
   position:relative;
   font-size:2em;
   padding: 10px;
 }
+.pledge_list_container {position:absolute!important; top:0;right:0; bottom:3em; overflow-x:auto}
 .pledge_list li .existing_pledge_amount { 
     float: right;
     right: 1em;

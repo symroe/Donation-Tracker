@@ -37,7 +37,11 @@
                 return [b.getBBox().x+90, b.getBBox().y-20]
             }
             function getLabelPos(b) {
-                return [b.getBBox().x+90, b.getBBox().y+20]
+                x = b.getBBox().x
+                y = b.getBBox().y
+                if (x != 0){                    
+                    return [x+90, y+20]
+                }
             }
             // #EE6AAB
             total_label_pos = getLabelPos(b1)
@@ -46,7 +50,17 @@
             total_amount_pos = getAmountPos(b1)
             target_amount_pos = getAmountPos(b2)
             
-            graph.bars[0][0].internal_label = r.g.text(total_label_pos[0], total_label_pos[1], "TOTAL").attr({"fill": "#BFD98A"});
+            if (total_label_pos) {                
+                total_text = "TOTAL"
+            } else {
+                total_text = ""
+            }
+            try {                
+            graph.bars[0][0].internal_label = r.g.text(total_label_pos[0], total_label_pos[1], total_text).attr({"fill": "#BFD98A"});
+            } catch(s) {
+                
+            }
+            
             graph.bars[0][1].internal_label = r.g.text(target_label_pos[0], target_label_pos[1], "TARGET").attr({"fill": "#EE6AAB"});
             graph.bars[0][2].internal_label = r.g.text(0,0, "").attr({opacity: 0});
 
@@ -79,20 +93,30 @@
                 v.show()
                 if (!new_graph.bars[0][k].attr("path")) {
                     v.hide()
+                    v.internal_label.hide()
+                    v.amount_label.hide()
                 }
-                if (!old_graph.bars[0][k].attr("path")) {
+                if (!old_graph.bars[0][k].attr("path")) {                    
                     old_graph = old_graph_view.makeGraph(old_graph_view.raphael)
+                    // v = old_graph.bars[0][k]
+                    // v.internal_label.hide()
+                    // v.amount_label.hide()
                 }
                 
                 try {
+                    
                     v.animate({ path:  new_graph.bars[0][k].attr("path")}, 200);
                     internal_y = new_graph.bars[0][k].internal_label.attr("y")
-                    amount_y = new_graph.bars[0][k].amount_label.attr("y")
-                    updated_amount = new_graph.bars[0][k].amount_label.attr("text")
                     v.internal_label.animate({y:  internal_y}, 200);
+
+                    updated_amount = new_graph.bars[0][k].amount_label.attr("text")
+                    amount_y = new_graph.bars[0][k].amount_label.attr("y")
                     v.amount_label.attr({text: updated_amount});
                     v.amount_label.animate({y:  amount_y}, 200);
+
                 } catch(s) {
+                    console.debug(s)
+                    old_graph.remove()
                     old_graph = old_graph_view.makeGraph(old_graph_view.raphael)
                 }
             });
