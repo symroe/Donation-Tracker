@@ -64,8 +64,8 @@
             graph.bars[0][1].internal_label = r.g.text(target_label_pos[0], target_label_pos[1], "TARGET").attr({"fill": "#EE6AAB"});
             graph.bars[0][2].internal_label = r.g.text(0,0, "").attr({opacity: 0});
 
-            graph.bars[0][0].amount_label = r.g.text(total_amount_pos[0], total_amount_pos[1], '£'+total).attr({"fill": "#BFD98A"});
-            graph.bars[0][1].amount_label = r.g.text(target_amount_pos[0], target_amount_pos[1], '£'+target).attr({"fill": "#EE6AAB"});
+            graph.bars[0][0].amount_label = r.g.text(total_amount_pos[0], total_amount_pos[1], '£'+CommaFormatted(total)).attr({"fill": "#BFD98A"});
+            graph.bars[0][1].amount_label = r.g.text(target_amount_pos[0], target_amount_pos[1], '£'+CommaFormatted(target)).attr({"fill": "#EE6AAB"});
             graph.bars[0][2].amount_label = r.g.text(0,0, "").attr({opacity: 0});
             
             return graph

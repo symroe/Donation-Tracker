@@ -13,7 +13,7 @@
         </section>
         
         <script type="text/tim" class="single_pledge">
-            <span class="existing_pledge_name">{{ name }}</span><span class="existing_pledge_amount">£{{ amount }}</span> 
+            <span class="existing_pledge_name">{{ name }}</span><span class="existing_pledge_amount">£{{ amount_formatted }}</span> 
             
             <button class="delete-pledge">Delete Pledge</button>
             <!--<input type="text" class="pledge-input" name="name" value="{{ name }}" />
@@ -21,8 +21,8 @@
         </script>
         
         <script type="text/tim" class="single_project">
-            <h2>{{ name }}</h2>
-            <h3>Total: £<span class="total"></span></h3>
+            <h2 class="project_name">{{ name }}</h2>
+            <span class="total"></span>
             <div class="graph col"></div>
             <!--<div class="project_pledges col"></div>-->
             <div class="pledge_list_container col"><div class="pledge_list"></div></div>
@@ -42,7 +42,8 @@
         <script src="js/underscore-min.js" type="text/javascript" charset="utf-8"></script>
         <script src="js/backbone.js" type="text/javascript" charset="utf-8"></script>
         <script src="js/backbone.localStorage.js" type="text/javascript" charset="utf-8"></script>
-
+        
+        <script src="js/utils.js" type="text/javascript" charset="utf-8"></script>
         <script src="js/raphael-min.js" type="text/javascript" charset="utf-8"></script>
         <script src="js/g.raphael.js" type="text/javascript" charset="utf-8"></script>
         <script src="js/g.bar.js" type="text/javascript" charset="utf-8"></script>

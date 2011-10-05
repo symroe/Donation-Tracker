@@ -11,7 +11,13 @@ body {
     float:left;
     width:50%;
 }
-
+h2.project_name { 
+    position:absolute; 
+    bottom:100px;
+    left:100px;
+    width:400px;
+    text-align:center;
+}
 #project_list {
     background-color:#3E3C31;
     position:absolute;
@@ -72,15 +78,13 @@ body {
 }
 
 .graph {
-/*    float: right;*/
-/*    width: 40%;*/
-/*    position: absolute;*/
-    top: 0;
-    right: 0;
+    position: absolute;
+    bottom: 150px;
+    left: 0;
     height:500px;
 }
 
-.hidden_graph { display:none; height:0}
+.hidden_graph, .total { display:none; height:0}
 
 @font-face {
     font-family: 'ProximaNovaExtrabold';

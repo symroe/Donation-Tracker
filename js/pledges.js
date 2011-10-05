@@ -4,6 +4,7 @@
     //Create a model to hold friend atribute
     name: null,
     amount: null,
+    amount_formatted: null,
     validate: function(attrs) {
         // console.debug(attrs)
         
@@ -45,10 +46,16 @@
             this.model.view = this;
         },
        error: function() {
-           alert('asd')
+           // alert('asd')
        },
        render: function() {
-           $(this.el).html(tim('single_pledge', this.model.toJSON()));
+
+
+           m = this.model.toJSON()
+           m['amount_formatted'] = CommaFormatted(this.model.get("amount"))
+           // this.model.set({'amount_formatted' : CommaFormatted(this.model.get("amount"))})
+           // console.debug(this.model.toJSON())
+           $(this.el).html(tim('single_pledge', m));
            return this;
        },
        deleteOne: function(el) {
