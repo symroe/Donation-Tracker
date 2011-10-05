@@ -61,6 +61,7 @@ h2.project_name {
     float: right;
     right: 1em;
     font-family: 'ProximaNovaExtrabold', sans-serif;
+    color:#E72A87;
 }
 .pledge_list li:nth-child(odd)    { background-color:#F6F6F5; }
 .pledge_list li:nth-child(even)    { background-color:#FBFBFB; }

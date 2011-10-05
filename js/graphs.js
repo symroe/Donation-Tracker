@@ -22,14 +22,14 @@
             target = this.model.get('target_amount')
             total = this.project.model.view.updateTotal()
             max = target*2
-            var initialData = [[parseFloat(total)],[target], [max]];
+            var initialData = [[target], [parseFloat(total)], [max]];
             graph = r.g.barchart(60, 40, 700, 420, [initialData], 0, {stacked:false, type: "round"});
             graph.bars[0][2].attr([this.graph_properties.attrs])
             graph.bars[0][1].attr([{fill: '#E72A87', stroke: '#E72A87'}])
             graph.bars[0][0].attr([{fill: '#A4C958', stroke: '#A4C958'}])
             
-            b1 = graph.bars[0][0]
-            b2 = graph.bars[0][1]
+            b1 = graph.bars[0][1]
+            b2 = graph.bars[0][0]
             // console.debug(p1.getBBox().y)
             
             r.g.txtattr.font = "30px ProximaNovaExtrabold, sans-serif";
@@ -56,16 +56,16 @@
                 total_text = ""
             }
             try {                
-            graph.bars[0][0].internal_label = r.g.text(total_label_pos[0], total_label_pos[1], total_text).attr({"fill": "#BFD98A"});
+            graph.bars[0][1].internal_label = r.g.text(total_label_pos[0], total_label_pos[1], total_text).attr({"fill": "#EE6AAB"});
             } catch(s) {
                 
             }
             
-            graph.bars[0][1].internal_label = r.g.text(target_label_pos[0], target_label_pos[1], "TARGET").attr({"fill": "#EE6AAB"});
+            graph.bars[0][0].internal_label = r.g.text(target_label_pos[0], target_label_pos[1], "TARGET").attr({"fill": "#BFD98A"});
             graph.bars[0][2].internal_label = r.g.text(0,0, "").attr({opacity: 0});
 
-            graph.bars[0][0].amount_label = r.g.text(total_amount_pos[0], total_amount_pos[1], '£'+CommaFormatted(total)).attr({"fill": "#BFD98A"});
-            graph.bars[0][1].amount_label = r.g.text(target_amount_pos[0], target_amount_pos[1], '£'+CommaFormatted(target)).attr({"fill": "#EE6AAB"});
+            graph.bars[0][1].amount_label = r.g.text(total_amount_pos[0], total_amount_pos[1], '£'+CommaFormatted(total)).attr({"fill": "#EE6AAB"});
+            graph.bars[0][0].amount_label = r.g.text(target_amount_pos[0], target_amount_pos[1], '£'+CommaFormatted(target)).attr({"fill": "#BFD98A"});
             graph.bars[0][2].amount_label = r.g.text(0,0, "").attr({opacity: 0});
             
             return graph

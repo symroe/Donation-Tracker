@@ -53,7 +53,7 @@
                 amount: $(this.el).find('.pledge_amount').val(),
                 project: this.model.id,
             });
-            $(this.el).children('.pledge_amount').val(Math.floor(100+Math.random()*(1000-100)));      
+            $('body #pledge_name')[0].focus()
         },
         addOne: function(pledge) {
             view = new PledgeView({model: pledge, project: this.model}).render().el
@@ -92,6 +92,7 @@
             $(this.el).html(tim('single_project', this.model.toJSON()));
             $('#ProjectView').append(this.el)
             this.updateTotal()
+            $('body #pledge_name')[0].focus()
             this.addGraph()
             return this;
         },
