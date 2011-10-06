@@ -28,6 +28,7 @@
             graph.bars[0][1].attr([{fill: '#E72A87', stroke: '#E72A87'}])
             graph.bars[0][0].attr([{fill: '#A4C958', stroke: '#A4C958'}])
             
+            
             b1 = graph.bars[0][1]
             b2 = graph.bars[0][0]
             
@@ -66,7 +67,10 @@
             graph.bars[0][1].amount_label = r.g.text(total_amount_pos[0], total_amount_pos[1], '£'+CommaFormatted(total)).attr({"fill": "#EE6AAB"});
             graph.bars[0][0].amount_label = r.g.text(target_amount_pos[0], target_amount_pos[1], '£'+CommaFormatted(target)).attr({"fill": "#BFD98A"});
             graph.bars[0][2].amount_label = r.g.text(0,0, "").attr({opacity: 0});
-            
+
+            // Hide the total text when the graph is too small
+            mask = r.rect(98, 441, 405, 50).attr({'fill' : '#FFF', stroke: '#FFF'});
+
             return graph
         },
         animate: function(old_graph_view, new_graph) {
