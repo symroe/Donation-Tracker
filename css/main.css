@@ -86,6 +86,11 @@ h2.project_name {
 .editing .pledge_edit_form {
     display:block !important;
 }
+.pledge_edit_form input {
+    font-size:0.6em;
+    background-color:rgba(0,0,0,0);
+    border:none;
+}
 .pledge_input {
     position:absolute;
     z-index:51;

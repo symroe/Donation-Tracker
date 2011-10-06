@@ -30,7 +30,6 @@
             
             b1 = graph.bars[0][1]
             b2 = graph.bars[0][0]
-            // console.debug(p1.getBBox().y)
             
             r.g.txtattr.font = "30px ProximaNovaExtrabold, sans-serif";
             function getAmountPos(b) {
@@ -39,7 +38,7 @@
             function getLabelPos(b) {
                 x = b.getBBox().x
                 y = b.getBBox().y
-                if (x != 0){                    
+                if (x != 0){
                     return [x+90, y+20]
                 }
             }
@@ -50,7 +49,7 @@
             total_amount_pos = getAmountPos(b1)
             target_amount_pos = getAmountPos(b2)
             
-            if (total_label_pos) {                
+            if (total_label_pos) {
                 total_text = "TOTAL"
             } else {
                 total_text = ""
@@ -60,7 +59,7 @@
             } catch(s) {
                 
             }
-            
+
             graph.bars[0][0].internal_label = r.g.text(target_label_pos[0], target_label_pos[1], "TARGET").attr({"fill": "#BFD98A"});
             graph.bars[0][2].internal_label = r.g.text(0,0, "").attr({opacity: 0});
 
@@ -88,7 +87,6 @@
                 Many Bothans died to bring us this information.
             */
             old_graph = old_graph_view.graph
-            // console.debug(old_graph_view.graph)
             $.each(old_graph.bars[0], function(k, v) {
                 v.show()
                 if (!new_graph.bars[0][k].attr("path")) {
@@ -98,9 +96,7 @@
                 }
                 if (!old_graph.bars[0][k].attr("path")) {                    
                     old_graph = old_graph_view.makeGraph(old_graph_view.raphael)
-                    // v = old_graph.bars[0][k]
-                    // v.internal_label.hide()
-                    // v.amount_label.hide()
+                    v = old_graph.bars[0][k]
                 }
                 
                 try {
@@ -115,7 +111,6 @@
                     v.amount_label.animate({y:  amount_y}, 200);
 
                 } catch(s) {
-                    console.debug(s)
                     old_graph.remove()
                     old_graph = old_graph_view.makeGraph(old_graph_view.raphael)
                 }
@@ -125,7 +120,7 @@
 
             // Now remove the new chart
             new_graph.remove();
-
+            
             return old_graph
         },
         update: function(graph) {
