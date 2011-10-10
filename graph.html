@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style type="text/css" media="screen">
+/*            body {background-color:red}*/
+              #holder_hidden { display:none }
+        </style>
+    </head>
+    <body>
+        <div id="holder"></div>
+        <div id="holder_hidden"></div>
+
+        <script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+        <!-- <script src="js/underscore-min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/backbone.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/backbone.localStorage.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/tim.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/pledges.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/projects.js" type="text/javascript" charset="utf-8"></script> -->
+        
+        <script src="js/raphael-min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/g.raphael.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/g.bar.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        
+        
+        
+        
+        <script type="text/javascript" charset="utf-8">
+                    window.onload = function () {
+                        $('#holder').css({'height' : 500, 'width': 300})
+                        // console.debug()
+                        var r = Raphael($("#holder")[0])
+                        var r2 = Raphael("holder_hidden")
+                        // var r2  = r
+
+                        r.g.txtattr.font = "12px 'Fontin Sans', Fontin-Sans, sans-serif";
+                        
+                        target = 5000
+                        max = target*4
+                        var initialData = [[0],[target], [max]];
+                        var newData = [[0],[target], [max]];
+
+                        var c = r.g.barchart(50, 10, 300, 420, [initialData], 0, {stacked:false, type: "round"});
+                        c.bars[0][2].attr([{stroke: "#fff", fill: "#fff"}])
+
+                        axis = r.g.axis(100,430,210,null,null,2,2,["Raised",  "Target"], " ", 0);
+                        axis.text.attr({font:"12px Arial", "font-weight": "regular", "fill": "#333333"});
+                        // show y-axis by setting orientation to 1 
+                        axis2 = r.g.axis(50,410,190,0,target*2,10,1);
+
+                        function animate_graph() {
+                            newData = [[newData[0][0]+1000], newData[1], [max]]
+                            var c2 = r2.g.barchart(50, 10, 300, 420, [newData], 0, {stacked:false, type: "round"});
+                            c2.bars[0][2].attr([{stroke: "#fff", fill: "#fff"}])
+                            $.each(c.bars[0], function(k, v) {
+                                try {
+                                    v.animate({ path:  c2.bars[0][k].attr("path")}, 200);
+
+                                } catch(s) {
+                                    c = r.g.barchart(50, 10, 300, 420, [newData], 0, {stacked:false, type: "round"});
+                                }
+                                v.value[0] = newData[k][0];                                    
+                            });
+                            c.bars[0][2].attr([{stroke: "#fff", fill: "#fff"}])
+
+                            // //Now remove the new chart
+                            c2.remove();
+                            // $('#holder').unbind()
+
+                        }
+                        $('#holder').click(animate_graph)
+                        
+                    };
+                </script>
+        
+    </body>
+</html>
