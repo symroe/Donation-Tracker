@@ -8,10 +8,18 @@ body {
     height:100%;
     display: inline-block;
 }
+
+#ProjectView {
+    position:absolute;
+    width:100%;
+    height:100%;
+}
+
 .col {
     float:left;
     width:50%;
 }
+
 h2.project_name { 
     position:absolute; 
     bottom:100px;
@@ -19,14 +27,16 @@ h2.project_name {
     width:400px;
     text-align:center;
 }
+
 #project_list {
     background-color:#3E3C31;
     position:absolute;
     width:100%;
-    bottom:-1em;
+    bottom:-5px;
     height:3em;
     z-index:50;
 }
+
 #project_list li {
     float:left;
     list-style-type:none;
@@ -34,20 +44,27 @@ h2.project_name {
     padding:0.5em;
     margin:0 0.5em;
 }
+
 #project_list li a {
     color:#fff;
     text-decoration:none;
 }
+
 #project_list li.active { background-color:#F2F2F2 }
 #project_list li.active a { color:#575846 }
 
-#add-project { 
+#add-project, #all-projects { 
     background-color:#6C6B65;
     border:none;
     font-size:1em;
     padding:0;
     margin:0;
     color:#fff;
+}
+
+.active #all-projects {
+    background-color:#fff;
+    color:#575846;
 }
 
 .pledge_list_container {
@@ -57,6 +74,7 @@ h2.project_name {
     bottom:3em; 
     overflow-x:auto
 }
+
 .pledge_list li { 
   list-style-type:none;
   position:relative;
@@ -64,11 +82,13 @@ h2.project_name {
   padding-bottom: 3px;
 
 }
+
 .pledge_list {
     background:url('../images/pledge-bg.png');
     height:100%;
     background-size: 16px;
 }
+
 .pledge_list li .existing_pledge_amount { 
     float: right;
     right: 1em;
@@ -76,6 +96,7 @@ h2.project_name {
     color:#E72A87;
     height:1em;
 }
+
 .pledge_list li:nth-child(odd)    { background-color:#F6F6F5; }
 .pledge_list li:nth-child(even)    { background-color:#FBFBFB; }
 
@@ -86,17 +107,20 @@ h2.project_name {
 .editing .pledge_edit_form {
     display:block !important;
 }
+
 .pledge_edit_form input {
     font-size:0.6em;
     background-color:rgba(0,0,0,0);
     border:none;
 }
+
 .pledge_input {
     position:absolute;
     z-index:51;
     bottom:1em;
     right:2em;
 }
+
 .pledge_input label {color:#525046}
 .pledge_input input {
     background-color:#6C6B65;
@@ -114,6 +138,25 @@ h2.project_name {
 }
 
 .hidden_graph, .total { display:none; height:0}
+
+.overviewTab {
+/*    position:relative;*/
+    top:0;
+    left:0;
+    width:100%;
+    text-align:center;
+}
+
+
+section.overviewTab h2 { font-size:2em; text-align:center; width:100%; left:0; z-index:100; bottom:60px}
+section.overviewTab .overviewgraph {
+    position:absolute;
+    bottom:150px;
+    height:400px;
+    width:100%;
+}
+
+section.overviewTab {}
 
 @font-face {
     font-family: 'ProximaNovaExtrabold';

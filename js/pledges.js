@@ -6,14 +6,9 @@
     amount: null,
     amount_formatted: null,
     validate: function(attrs) {
-        // console.debug(attrs)
-        
-        // console.debug(attrs.amount)
-        // console.debug(!parseFloat(attrs.amount))
         if (!parseFloat(attrs.amount)) {
-            return "NANasd";
+            return "NAN";
         }
-        // if attrs.amount
     }
   });
   
@@ -23,6 +18,7 @@
     localStorage: new Store("pledges_store"),
     total: function(project_id) {
         total = this.forProject(project_id).reduce(function(total, model) { return total + parseInt(model.get('amount'))}, 0)
+        Projects.get(project_id).set({total : total})
         return total
     },
     forProject: function(project_id) {

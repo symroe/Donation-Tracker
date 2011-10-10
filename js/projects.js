@@ -17,14 +17,15 @@
     });
 
     window.Projects = new ProjectList;
-
+    
     window.SingleProjectView = Backbone.View.extend({
         tagName: "section",
         className: "project",
         initialize: function(model) {
-            _.bindAll(this, 'render', 'addOne', 'addAll', 'graph');
+            _.bindAll(this, 'render', 'addOne', 'addAll', 'graph', 'total');
 
             this.model.view = this;
+
             this.model.pledges = new PledgeList(this)
 
             this.model.pledges.bind('change', this.updateTotal, this);
@@ -85,8 +86,8 @@
             $('#project_list').append(tab);
             
 
-            b = $('#add-project').parent()
-            $('#add-project').parent().remove()
+            b = $('#all-projects').parent()
+            $('#all-projects').parent().remove()
             $('#project_list').append(b);
 
             $(this.el).html(tim('single_project', this.model.toJSON()));
@@ -98,46 +99,91 @@
         },
         activateTab: function() {
             $('.project').hide()
+            $('.overviewTab').hide()
             $('.project-tab').parent().removeClass('active')
+            $('#all-projects').parent().removeClass('active')
             $('.project-tab-'+this.model.id).parent().addClass('active')
             $(this.el).show()
         },
         updateTotal: function() {
             total = $(this.el).find('.total').html(this.model.pledges.total(this.model.id))
+            this.total = total
             return parseFloat(total.html())
         }
-
     });
+
+    window.projectOverview = Backbone.View.extend({
+        tagName: 'section',
+        className: 'overviewTab',
+        initialize: function() {
+            this.graph = new TotalGraphView
+        },
+        activateTab: function() {
+            $('.project').hide()
+            $('.overviewTab').hide()
+            $('.project-tab').parent().removeClass('active')
+            $('#all-projects').parent().addClass('active')
+            PR.navigate('overview')
+            this.render().show()
+        },
+        render: function() {
+            tab = this.el
+            total = 0
+            target = 0
+            Projects.each(function(p) {
+                 total += parseFloat(p.get('total'))
+                 target += parseFloat(p.get('target_amount'))
+            })
+            
+            $('body').find('.overviewgraph').find('svg').remove()
+            g = this.graph.makeGraph(total, target)
+            $(this.el).html(tim('overview', {}))
+            $(this.el).find('.overviewgraph').append(g)
+            $(this.el).find('.overviewgraph').find('div').removeClass('hidden_graph')
+            
+            $('#ProjectView').append(this.el)
+            return $(this.el)
+        }
+    })
+    overviewTab = new projectOverview;
 
     window.AllProjectsView = Backbone.View.extend({
         tagName: "section",
         id: "ProjectView",
         el: $("#ProjectView"),
         initialize: function() {
-            _.bindAll(this, 'addOne', 'addAll');
+            _.bindAll(this, 'addOne', 'addAll', 'overview');
             Projects.bind('add', this.addOne);
             Projects.bind('reset', this.addAll);
+            this.overview = overviewTab
             
             Projects.fetch();
         },
         events: {
             "click #add-project":  "newProject",
+            "click #all-projects":  "overview",
+        },
+        overview: function() {
+            // console.debug(overviewTab)
+            overviewTab.activateTab()
+            // console.debug('worked')
         },
         newProject: function() {
-            // project_id = prompt('Project ID')
             name = prompt('Project Name')
-            m = Projects.create({
-                // project_id: project_id,
-                name: name
-            });
-            PR.navigate('project/'+m.id)
-            PR.showProject(m.id)
+            if (name != "null") {
+                m = Projects.create({
+                    name: name
+                });
+                PR.navigate('project/'+m.id)
+                PR.showProject(m.id)                
+            }
         },
         addOne: function(project) {
             var view = new SingleProjectView({model: project})//.render().el;
         },
         addAll: function() {
             Projects.each(this.addOne)
+            // var all = overviewTab
         },
         
     });
@@ -145,15 +191,29 @@
 
         
     var ProjectRouter = Backbone.Router.extend({
-      routes: {
-        "project/:project": "showProject",
-      },
-      showProject: function(project) {
-       project = Projects.get(project)
-       project.view.activateTab()
-      },
+        routes: {
+            "" : "firstProject",
+            "overview" : "overview",
+            "add": "addProject",
+            "project/:project": "showProject",
+        },
+        firstProject: function() {
+            this.navigate('project/'+Projects.at(0).id)
+            this.showProject(Projects.at(0))
+        },
+        showProject: function(project) {
+            project = Projects.get(project)
+            project.view.activateTab()
+        },
+        overview: function() {
+            overviewTab.activateTab()
+        },
+        addProject: function() {
+            AllProject.newProject()
+        },
     });
     var PR = new ProjectRouter;
+    // PR.navigate(Projects.at(0))
     Backbone.history.start()
 
     

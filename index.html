@@ -9,7 +9,10 @@
     <body>
 
         <section id="ProjectView">
-            <ul id="project_list"><li><button id="add-project">+</button></li></ul>
+            <ul id="project_list">
+            <li><button id="all-projects">=</button></li>
+            <!--<li><button id="add-project">+</button></li>-->
+            </ul>
         </section>
         
         <script type="text/tim" class="single_pledge">
@@ -29,11 +32,16 @@
             <div class="pledge_input">
                 <label for="pledge_name">Name</label><input type="text" id="pledge_name" name="name" value="" class="pledge_name pledge_form_input">
                 <label for="pledge_amount">&pound;</label><input type="text" id="pledge_amount" name="amount" value="" class="pledge_amount pledge_form_input">
-            
         </script>
 
         <script type="text/tim" class="single_project_list_item">
             <li><a href="#project/{{ id }}" class="project-tab project-tab-{{ id }}">{{ name }}</a></li>
+        </script>
+
+        <script type="text/tim" class="overview">
+            <h2 class="project_name">Total Raised</h2>
+            <span class="total"></span>
+            <div class="overviewgraph"></div>
         </script>
         
         <script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
