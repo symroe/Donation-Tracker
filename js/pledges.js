@@ -47,8 +47,6 @@
            // alert('asd')
        },
        render: function() {
-
-
            m = this.model.toJSON()
            m['amount_formatted'] = CommaFormatted(this.model.get("amount"))
            // this.model.set({'amount_formatted' : CommaFormatted(this.model.get("amount"))})

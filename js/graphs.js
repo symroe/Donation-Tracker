@@ -47,7 +47,7 @@
             graph.bars[0][0].amount_label = r.g.text(target_amount_pos[0], target_amount_pos[1], '£'+CommaFormatted(target)).attr({"fill": "#BFD98A"});
             
             // Hide the total text when the graph is too small
-            mask = r.rect(98, 301, 405, 50).attr({'fill' : '#FFF', stroke: '#FFF'});
+            mask = r.rect(30, 301, 505, 50).attr({'fill' : '#FFF', stroke: '#FFF'});
             
             return this.el
         }

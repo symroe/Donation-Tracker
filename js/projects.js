@@ -54,17 +54,14 @@
                 amount: $(this.el).find('.pledge_amount').val(),
                 project: this.model.id,
             });
+            $(this.el).find('.pledge_name').val('')
+            $(this.el).find('.pledge_amount').val('')
             $('body #pledge_name')[0].focus()
         },
         addOne: function(pledge) {
             view = new PledgeView({model: pledge, project: this.model}).render().el
             new_el = $(this.el).find('.pledge_list').append(view)
-
-            $(this.el).find('.pledge_list_container #1').animate({
-                scrollTop: new_el.parent().find('.pledge_list')[0].top
-                }, 2000)
-            
-            $(this.el).find('.pledge_list').append(view)
+            $(view).hide().prependTo($(this.el).find('.pledge_list')).slideDown('fast')
             this.updateTotal()
         },
         addAll: function() {
@@ -162,6 +159,9 @@
         events: {
             "click #add-project":  "newProject",
             "click #all-projects":  "overview",
+        },
+        editLastPledge: function(e) {
+            console.debug(e)
         },
         overview: function() {
             // console.debug(overviewTab)
