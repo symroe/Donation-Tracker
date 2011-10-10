@@ -4,7 +4,7 @@ body {
     background-image: -webkit-radial-gradient(center center, #FFFFFF, #F5F5F5);
     overflow:hidden;
     margin:0;
-    padding:0;
+    padding:0px;
     height:100%;
     display: inline-block;
 }
@@ -33,7 +33,7 @@ h2.project_name {
     position:absolute;
     width:100%;
     bottom:-5px;
-    height:3em;
+    height:3.5em;
     z-index:50;
 }
 
@@ -70,7 +70,7 @@ h2.project_name {
 .pledge_list_container {
     position:absolute!important;
     top:0;
-    right:0; 
+    right:15px; 
     bottom:3em; 
     overflow-x:auto
 }
@@ -117,11 +117,11 @@ h2.project_name {
 .pledge_input {
     position:absolute;
     z-index:51;
-    bottom:1em;
+    bottom:2em;
     right:2em;
 }
 
-.pledge_input label {color:#525046}
+.pledge_input label {color:#F6F6F5;}
 .pledge_input input {
     background-color:#6C6B65;
     border:none;
